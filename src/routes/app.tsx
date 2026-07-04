@@ -10,7 +10,8 @@ export const Route = createFileRoute("/app")({
   component: AppShell,
 });
 
-const NAV = [
+type NavItem = { to: string; label: string; icon: any; end?: boolean };
+const NAV: NavItem[] = [
   { to: "/app", label: "Home", icon: Home, end: true },
   { to: "/app/discover", label: "Discover", icon: Compass },
   { to: "/app/matches", label: "Matches", icon: Sparkles },
@@ -18,7 +19,7 @@ const NAV = [
   { to: "/app/notifications", label: "Notifications", icon: Bell },
   { to: "/app/profile", label: "Profile", icon: UserIcon },
   { to: "/app/settings", label: "Settings", icon: SettingsIcon },
-] as const;
+];
 
 function AppShell() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
