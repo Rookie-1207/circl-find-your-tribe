@@ -57,18 +57,40 @@ export function Divider() {
     </div>
   );
 }
+import type { ChangeEvent } from "react";
+
 export function Field({
-  icon: Icon, label, type, placeholder, required,
-}: { icon: any; label: string; type: string; placeholder: string; required?: boolean }) {
+  icon: Icon,
+  label,
+  type,
+  placeholder,
+  required,
+  value,
+  onChange,
+}: {
+  icon: any;
+  label: string;
+  type: string;
+  placeholder: string;
+  required?: boolean;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+}) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-medium text-foreground/80">{label}</span>
+      <span className="mb-1.5 block text-xs font-medium text-foreground/80">
+        {label}
+      </span>
+
       <span className="group relative flex items-center">
         <Icon className="pointer-events-none absolute left-4 size-4 text-muted-foreground" />
+
         <input
           type={type}
           required={required}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
           className="h-12 w-full rounded-full border border-border bg-surface pl-11 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-foreground/30 focus:outline-none focus:ring-4 focus:ring-brand/15"
         />
       </span>
